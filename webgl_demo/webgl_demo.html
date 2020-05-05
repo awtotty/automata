@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script id="vs" type="notjs">
+        attribute vec4 a_position; 
+
+        void main() {
+            gl_Position = a_position; 
+        }
+    </script>
+
+    <script id="fs" type="notjs">
+        precision mediump float; 
+
+        void main() {
+            gl_FragColor = vec4(1, 0, 0.5, 1); 
+        }
+    </script>
+
+    <script src="../lib/rule.js"></script>
+    <script src="../lib/world.js"></script>
+    <script src="../lib/visual.js"></script>
+    <script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+    <meta charset="utf-8">
+
+</head>
+<body>
+    <canvas id="c" class="fullCanvas" style="border:1px solid #aaaaaa;">
+    <script src="webgl_demo.js"></script>
+</body>
+</html>
