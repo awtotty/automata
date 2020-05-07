@@ -25,11 +25,6 @@ def get_state(rule, curr_state):
     """ 
     return rule[-int(curr_state, 2)-1]
 
-
-def get_e_rule(): 
-    pass
-
-
 def get_conway_rule(): 
     """
         Generates the rule number for Conway's GoL. 
