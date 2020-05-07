@@ -1,5 +1,6 @@
 # import numpy as np
-import os, time
+import os, time 
+from random import random
 
 
 # rule stuff
@@ -32,7 +33,7 @@ def get_conway_rule():
         Since GoL is a 2D automaton, there are 2^9=512 bits
         that need to be determined to be either 0 or 1. 
     """
-    c = ''; 
+    c = '' 
 
     # for each digit in a 2D automaton rule
     for i in range(512): 
@@ -50,6 +51,17 @@ def get_conway_rule():
 
     # reverse the generated string
     return c[::-1]
+
+def get_random_rule(): 
+    '''
+        Generates a random rule for 2D automaton. 
+    '''
+    rule = ''
+
+    for i in range(512): 
+        rule += '1' if random() < 0.3 else '0'
+
+    return rule 
 
 def apply_rule_to_world(rule, world): 
     """ 
@@ -89,14 +101,14 @@ def print_world(world, title=None, dead='0', alive='1'):
         print()
     print()
 
-def animate_world(world, gens=20, delay=0.05, dead='0', alive='1', title=None): 
+def animate_world(world, rule, gens=20, delay=0.05, dead='0', alive='1', title=None): 
     '''
         Animates the world in the command line 
     '''
     for i in range(gens): 
         print_world(world, title, dead, alive)
         time.sleep(delay)
-        world = apply_rule_to_world(gol_rule, world)
+        world = apply_rule_to_world(rule, world)
 
 
 
@@ -171,5 +183,6 @@ gosper_glider_gun = [
 glider = get_formatted_world(glider, '.', '*')
 gosper_glider_gun = get_formatted_world(gosper_glider_gun, '.', '*')
 
-animate_world(world=glider, gens=50, delay=0.1, dead='.', alive='O', title='Glider')
-animate_world(world=gosper_glider_gun, gens=100, delay=0.05, dead='.', alive='O', title='Gosper')
+animate_world(world=glider, rule=gol_rule, gens=50, delay=0.1, dead='.', alive='O', title='Glider')
+animate_world(world=gosper_glider_gun, rule=gol_rule, gens=100, delay=0.05, dead='.', alive='O', title='Gosper')
+# animate_world(world=gosper_glider_gun, rule=get_random_rule(), gens=100, delay=0.05, dead='.', alive='O', title='Random rule')
