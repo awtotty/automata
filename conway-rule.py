@@ -1,4 +1,5 @@
 # import numpy as np
+import os, time
 
 # rule stuff
 
@@ -23,6 +24,11 @@ def get_state(rule, curr_state):
         where each place is either 0 for dead or 1 for alive. 
     """ 
     return rule[-int(curr_state, 2)-1]
+
+
+def get_e_rule(): 
+    pass
+
 
 def get_conway_rule(): 
     """
@@ -78,12 +84,21 @@ def print_world(world, dead='0', alive='1'):
     """
         Prints the given world in 2D form to console
     """
+    os.system('cls' if os.name=='nt' else 'clear')
     for row in world: 
         for cell in row: 
             print(dead if cell=='0' else alive, end='')
         print()
     print()
 
+def animate_world(world, gens=20, delay=0.05, dead='0', alive='1'): 
+    '''
+        Animates the world in the command line 
+    '''
+    for i in range(gens): 
+        print_world(world, dead, alive)
+        time.sleep(delay)
+        world = apply_rule_to_world(gol_rule, world)
 
 
 # demo
@@ -103,15 +118,15 @@ gol_rule = get_conway_rule()
 
 # print(get_state(gol_rule, '000011011'))
 
-world = [ 
+# print(get_e_rule())
+
+glider = [ 
             '0000000', 
-            '1100000', 
-            '1100000', 
-            '0011000', 
-            '0011000', 
+            '0000000', 
+            '0010000', 
+            '1010000', 
+            '0110000', 
             '0000000', 
         ]
 
-for i in range(5): 
-    print_world(world, ' ', '*')
-    world = apply_rule_to_world(gol_rule, world)
+animate_world(world=glider, gens=50, delay=0.1, dead='.', alive='*')
