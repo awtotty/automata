@@ -6,15 +6,15 @@ from random import random
 # rule stuff
 
 def count_set_bits(n): 
-    """
+    '''
         Counts the number of bits in the binary representation of n
         that are set to 1. 
-    """
+    '''
     binary = bin(n)[2:]; 
     return len([binary[i] for i in range(0, len(binary)) if binary[i] == '1'])
 
 def get_state(rule, curr_state): 
-    """
+    '''
         Returns the future state of a given neighborhood using the given rule. 
         The current state is represented as a string of length 9, 
         'abcdefghi' corresponding to the 2D configuration 
@@ -24,15 +24,15 @@ def get_state(rule, curr_state):
             g h i 
 
         where each place is either 0 for dead or 1 for alive. 
-    """ 
+    ''' 
     return rule[-int(curr_state, 2)-1]
 
 def get_conway_rule(): 
-    """
+    '''
         Generates the rule number for Conway's GoL. 
         Since GoL is a 2D automaton, there are 2^9=512 bits
         that need to be determined to be either 0 or 1. 
-    """
+    '''
     c = '' 
 
     # for each digit in a 2D automaton rule
@@ -64,12 +64,12 @@ def get_random_rule():
     return rule 
 
 def apply_rule_to_world(rule, world): 
-    """ 
+    ''' 
         Applies a 2D rule to a 2D automaton. World is a list of strings 
         where each char is 0 for dead and 1 for alive. 
         
         A new world is returned, leaving the original unchanged.  
-    """
+    '''
     new_world = []
     for r in range(len(world)): 
         new_row = '' 
@@ -89,9 +89,9 @@ def apply_rule_to_world(rule, world):
 # display stuff
 
 def print_world(world, title=None, dead='0', alive='1'): 
-    """
+    '''
         Prints the given world in 2D form to console
-    """
+    '''
     os.system('cls' if os.name=='nt' else 'clear')
     if title: 
         print(title)
@@ -156,6 +156,7 @@ glider = [
             '.**....', 
             '.......', 
         ]
+glider = get_formatted_world(glider, '.', '*')
 
 gosper_glider_gun = [
             '......................................', 
@@ -179,9 +180,8 @@ gosper_glider_gun = [
             '......................................', 
             '......................................', 
         ]
-
-glider = get_formatted_world(glider, '.', '*')
 gosper_glider_gun = get_formatted_world(gosper_glider_gun, '.', '*')
+
 
 animate_world(world=glider, rule=gol_rule, gens=50, delay=0.1, dead='.', alive='O', title='Glider')
 animate_world(world=gosper_glider_gun, rule=gol_rule, gens=100, delay=0.05, dead='.', alive='O', title='Gosper')
