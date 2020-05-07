@@ -75,23 +75,25 @@ def apply_rule_to_world(rule, world):
 
 # display stuff
 
-def print_world(world, dead='0', alive='1'): 
+def print_world(world, title=None, dead='0', alive='1'): 
     """
         Prints the given world in 2D form to console
     """
     os.system('cls' if os.name=='nt' else 'clear')
+    if title: 
+        print(title)
     for row in world: 
         for cell in row: 
             print(dead if cell=='0' else alive, end='')
         print()
     print()
 
-def animate_world(world, gens=20, delay=0.05, dead='0', alive='1'): 
+def animate_world(world, gens=20, delay=0.05, dead='0', alive='1', title=None): 
     '''
         Animates the world in the command line 
     '''
     for i in range(gens): 
-        print_world(world, dead, alive)
+        print_world(world, title, dead, alive)
         time.sleep(delay)
         world = apply_rule_to_world(gol_rule, world)
 
@@ -122,4 +124,28 @@ glider = [
             '0000000', 
         ]
 
-animate_world(world=glider, gens=50, delay=0.1, dead='.', alive='*')
+gosper_glider_gun = [
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000001000000000000', 
+            '00000000000000000000000101000000000000', 
+            '00000000000001100000011000000000000110', 
+            '00000000000010001000011000000000000110', 
+            '01100000000100000100011000000000000000', 
+            '01100000000100010110000101000000000000', 
+            '00000000000100000100000001000000000000', 
+            '00000000000010001000000000000000000000', 
+            '00000000000001100000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+            '00000000000000000000000000000000000000', 
+        ]
+
+animate_world(world=glider, gens=50, delay=0.1, dead='.', alive='*', title='Glider')
+animate_world(world=gosper_glider_gun, gens=100, delay=0.05, dead=' ', alive='*', title='Gosper')
