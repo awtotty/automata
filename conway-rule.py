@@ -1,6 +1,7 @@
 # import numpy as np
 import os, time
 
+
 # rule stuff
 
 def count_set_bits(n): 
@@ -102,6 +103,14 @@ def animate_world(world, gens=20, delay=0.05, dead='0', alive='1', title=None):
 # world stuff
 
 def get_formatted_world(world, dead, alive): 
+    '''
+        Returns a properly formated world (0 for dead, 1 for alive) 
+        from the given world where the dead param specifies the current
+        encoding for dead and the alive param specifies the current encoding 
+        for alive. 
+
+        The world param is not modified in place. 
+    '''
     new_world = []
     for row in world: 
         row = row.replace(dead, '0')
@@ -162,5 +171,5 @@ gosper_glider_gun = [
 glider = get_formatted_world(glider, '.', '*')
 gosper_glider_gun = get_formatted_world(gosper_glider_gun, '.', '*')
 
-animate_world(world=glider, gens=50, delay=0.1, dead='.', alive='*', title='Glider')
-animate_world(world=gosper_glider_gun, gens=100, delay=0.05, dead=' ', alive='*', title='Gosper')
+animate_world(world=glider, gens=50, delay=0.1, dead='.', alive='O', title='Glider')
+animate_world(world=gosper_glider_gun, gens=100, delay=0.05, dead='.', alive='O', title='Gosper')
