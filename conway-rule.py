@@ -113,8 +113,6 @@ gol_rule = get_conway_rule()
 
 # print(get_state(gol_rule, '000011011'))
 
-# print(get_e_rule())
-
 glider = [ 
             '0000000', 
             '0000000', 
