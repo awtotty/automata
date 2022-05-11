@@ -5,9 +5,25 @@ window.onload = function()
     run();  
 }
 
+function getRule() {
+    return parseInt(rule, 2);
+}
+
 function updateRule()
 {
-    rule = parseInt(document.getElementById("rule").value).toString(2); 
+    var newRuleStr = document.getElementById("rule").value.trim() 
+    if (isNaN(newRuleStr)) {
+        alert("Rules must be a number (no spaces)!")
+        return 
+    }
+
+    var newRule = parseInt(newRuleStr) 
+    if (newRule < 0 || newRule > 255) {
+        alert("Rules must be between 0 and 255!")
+        return
+    }
+
+    rule = newRule.toString(2);;
 }
 
 function newRun()

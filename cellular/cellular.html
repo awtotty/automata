@@ -5,13 +5,13 @@
     <meta charset="utf-8">
 </head>
 <body>
+    <form onsubmit="newRun();return false">
+        <label for="rule">Rule (0-255): </label>
+        <input type="text" id="rule" name="rule">
+        <input type="button" value="Run" onclick="newRun()"/>
+    </form>
+
     <canvas id="myCanvas" width="1200" height="800"" style="border:1px solid #aaaaaa;">
     </canvas>   
-
-    <form>
-        <input type="button" value="Run" onclick="newRun()"/>
-        <label for="rule">Rule (0-255): </label><br>
-        <input type="text" id="rule" name="rule" onclick="newRun()"><br>
-    </form>
 </body>
 </html>
